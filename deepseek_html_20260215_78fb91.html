@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ÉLAN | fashion house</title>
+  <!-- Google Fonts for elegant typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free) for minimal icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ----- RESET & BASE ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #faf9f7;
+      color: #1e1e1e;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+
+    /* ----- NAVIGATION (clean, minimal) ----- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 5%;
+      background: transparent;
+      position: absolute;
+      width: 100%;
+      z-index: 10;
+      mix-blend-mode: difference;
+      color: white;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      font-family: 'Playfair Display', serif;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .logo span {
+      font-weight: 300;
+      font-size: 1rem;
+      display: block;
+      letter-spacing: 3px;
+      color: #ddd;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      font-weight: 400;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover {
+      opacity: 0.6;
+    }
+
+    /* ----- HERO (full bleed, fashion image) ----- */
+    .hero {
+      height: 100vh;
+      min-height: 700px;
+      background: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.35)), 
+                  url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: 0 5% 8rem 5%;
+      color: white;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 620px;
+      animation: fadeUp 1s ease-out;
+    }
+    .hero-content h1 {
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 600;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 15px rgba(0,0,0,0.2);
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      opacity: 0.9;
+      max-width: 550px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.8rem;
+      background: white;
+      color: #1a1a1a;
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      border: 0;
+      transition: all 0.3s;
+      border-radius: 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    .btn:hover {
+      background: #e0dcd7;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid white;
+      color: white;
+      margin-left: 1rem;
+    }
+    .btn-outline:hover {
+      background: white;
+      color: black;
+    }
+
+    /* ----- COLLECTION SECTION (editorial grid) ----- */
+    .section {
+      padding: 6rem 5%;
+    }
+    .section-title {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .section-sub {
+      text-align: center;
+      color: #6a6a6a;
+      margin-bottom: 3.5rem;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      box-shadow: 0 15px 30px -15px rgba(0,0,0,0.1);
+      transition: transform 0.4s, box-shadow 0.4s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 40px -15px rgba(0,0,0,0.2);
+    }
+    .card-image {
+      height: 380px;
+      background-size: cover;
+      background-position: center 20%;
+    }
+    .card-info {
+      padding: 1.5rem 1.2rem 1.8rem;
+    }
+    .card-info h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+    }
+    .card-info p {
+      color: #707070;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .price {
+      font-weight: 600;
+      color: #2d2d2d;
+      font-size: 1.2rem;
+    }
+
+    /* ----- BANNER / CAMPAIGN (mid section) ----- */
+    .campaign {
+      background: #f0ece5;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 0;
+    }
+    .campaign-img {
+      flex: 1 1 45%;
+      min-height: 450px;
+      background: url('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=1887&auto=format&fit=crop') no-repeat center center/cover;
+    }
+    .campaign-content {
+      flex: 1 1 45%;
+      padding: 3rem 4rem;
+      text-align: left;
+    }
+    .campaign-content h2 {
+      font-size: 2.6rem;
+      margin-bottom: 1.5rem;
+    }
+    .campaign-content p {
+      font-size: 1.1rem;
+      color: #3a3a3a;
+      margin-bottom: 2.2rem;
+    }
+    .btn-dark {
+      background: #1e1e1e;
+      color: white;
+      border: none;
+    }
+    .btn-dark:hover {
+      background: #3a3a3a;
+    }
+
+    /* ----- NEWSLETTER / SIGNATURE ----- */
+    .signature {
+      background: #1e1e1e;
+      color: white;
+      text-align: center;
+      padding: 5rem 5%;
+    }
+    .signature h2 {
+      font-size: 2.6rem;
+      margin-bottom: 1rem;
+    }
+    .signature p {
+      opacity: 0.75;
+      margin-bottom: 2.5rem;
+      font-size: 1.1rem;
+    }
+    .email-box {
+      display: flex;
+      max-width: 500px;
+      margin: 0 auto;
+      border: 1px solid #444;
+    }
+    .email-box input {
+      flex: 1;
+      padding: 1.1rem;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 1rem;
+    }
+    .email-box input::placeholder {
+      color: #aaa;
+      font-weight: 300;
+    }
+    .email-box button {
+      padding: 0 2rem;
+      background: white;
+      border: none;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .email-box button:hover {
+      background: #d4d4d4;
+    }
+
+    /* ----- FOOTER (clean) ----- */
+    footer {
+      background: #121212;
+      color: #a8a8a8;
+      padding: 3rem 5% 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      margin-left: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.8rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: white;
+    }
+    .social i {
+      font-size: 1.4rem;
+      margin-right: 1.5rem;
+      color: #aaa;
+      transition: color 0.2s;
+    }
+    .social i:hover {
+      color: white;
+    }
+
+    /* animation */
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* mobile adjustments */
+    @media (max-width: 800px) {
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem 5%;
+        background: rgba(0,0,0,0.5);
+        mix-blend-mode: normal;
+      }
+      .nav-links {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .hero {
+        align-items: flex-end;
+        padding-bottom: 5rem;
+      }
+      .campaign-content {
+        padding: 3rem 2rem;
+      }
+      .btn-outline {
+        margin-left: 0;
+        margin-top: 0.5rem;
+      }
+      .footer-links a {
+        margin-left: 1rem;
+      }
+    }
+    @media (max-width: 500px) {
+      .hero-content h1 {
+        font-size: 3.2rem;
+      }
+      .campaign-img {
+        min-height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- minimalist navigation -->
+  <nav class="navbar">
+    <div class="logo">ÉLAN<span>atélier</span></div>
+    <div class="nav-links">
+      <a href="#">studio</a>
+      <a href="#">runway</a>
+      <a href="#">prêt-à-porter</a>
+      <a href="#">archives</a>
+    </div>
+  </nav>
+
+  <!-- hero / flagship visual -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>essence <br>of movement</h1>
+      <p>Where structure meets fluidity — discover the autumn‑winter collection, crafted for the modern silhouette.</p>
+      <div>
+        <a href="#" class="btn">explore collection</a>
+        <a href="#" class="btn btn-outline">lookbook</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- featured collection / editorial grid -->
+  <section class="section">
+    <h2 class="section-title">new horizons</h2>
+    <div class="section-sub">s/s 2025 — early access</div>
+    <div class="grid">
+      <!-- card 1 -->
+      <a href="#" class="card">
+        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop');"></div>
+        <div class="card-info">
+          <h3>asymmetrical drape</h3>
+          <p>evening wear</p>
+          <span class="price">€ 890</span>
+        </div>
+      </a>
+      <!-- card 2 -->
+      <a href="#" class="card">
+        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=2070&auto=format&fit=crop');"></div>
+        <div class="card-info">
+          <h3>double‑faced wool</h3>
+          <p>outerwear</p>
+          <span class="price">€ 1.450</span>
+        </div>
+      </a>
+      <!-- card 3 -->
+      <a href="#" class="card">
+        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=1887&auto=format&fit=crop');"></div>
+        <div class="card-info">
+          <h3>silk pleats</h3>
+          <p>blouse</p>
+          <span class="price">€ 620</span>
+        </div>
+      </a>
+      <!-- card 4 -->
+      <a href="#" class="card">
+        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?q=80&w=1887&auto=format&fit=crop');"></div>
+        <div class="card-info">
+          <h3>sculpted blazer</h3>
+          <p>tailoring</p>
+          <span class="price">€ 1.280</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- campaign / editorial banner -->
+  <div class="campaign">
+    <div class="campaign-img"></div>
+    <div class="campaign-content">
+      <h2>the weightless line</h2>
+      <p>Our iconic draping technique reimagined in biodegradable cupro and organic silk. Limited edition capsule available in atelier and online.</p>
+      <a href="#" class="btn btn-dark">discrete luxury</a>
+    </div>
+  </div>
+
+  <!-- portfolio / second row (testament to variety) -->
+  <section class="section" style="padding-top: 2rem;">
+    <div class="grid">
+      <!-- card 5 -->
+      <a href="#" class="card">
+        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=1887&auto=format&fit=crop');"></div>
+        <div class="card-info">
+          <h3>liquid jersey</h3>
+          <p>gown</p>
+          <span class="price">€ 2.100</span>
+        </div>
+      </a>
+      <!-- card 6 -->
+      <a href="#" class="card">
+        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=2070&auto=format&fit=crop');"></div>
+        <div class="card-info">
+          <h3>leather harness</h3>
+          <p>accessories</p>
+          <span class="price">€ 450</span>
+        </div>
+      </a>
+      <!-- card 7 -->
+      <a href="#" class="card">
+        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=2070&auto=format&fit=crop');"></div>
+        <div class="card-info">
+          <h3>pleated midi</h3>
+          <p>skirt</p>
+          <span class="price">€ 730</span>
+        </div>
+      </a>
+      <!-- card 8 -->
+      <a href="#" class="card">
+        <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1552611052-4a0e8c13be2d?q=80&w=1964&auto=format&fit=crop');"></div>
+        <div class="card-info">
+          <h3>deconstructed coat</h3>
+          <p>knitwear</p>
+          <span class="price">€ 1.590</span>
+        </div>
+      </a>
+    </div>
+    <div style="text-align: center; margin-top: 4rem;">
+      <a href="#" class="btn btn-dark" style="background: #2d2d2d;">view entire collection →</a>
+    </div>
+  </section>
+
+  <!-- mailing list / touch of exclusivity -->
+  <div class="signature">
+    <h2>the élan code</h2>
+    <p>be the first to receive private collection previews and atelier invitations.</p>
+    <div class="email-box">
+      <input type="email" placeholder="your email address">
+      <button>subscribe</button>
+    </div>
+  </div>
+
+  <!-- footer with minimal links and social -->
+  <footer>
+    <div class="copyright">© ÉLAN 2025 — all rights reserved</div>
+    <div class="social">
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-pinterest-p"></i>
+      <i class="fab fa-spotify"></i>
+    </div>
+    <div class="footer-links">
+      <a href="#">privacy</a>
+      <a href="#">terms</a>
+      <a href="#">client service</a>
+    </div>
+  </footer>
+
+  <!-- small interaction (optional, just to hint subscription) -->
+  <script>
+    (function() {
+      const subBtn = document.querySelector('.email-box button');
+      const emailInput = document.querySelector('.email-box input');
+      if(subBtn) {
+        subBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          if(emailInput.value.trim() !== '') {
+            alert('✨ Thank you — you are now registered to the ÉLAN universe.');
+            emailInput.value = '';
+          } else {
+            alert('Please enter an email to stay inspired.');
+          }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
